@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ast-sort-simulation/static/css/main.085a32f9.css",
+    "main.js": "/ast-sort-simulation/static/js/main.52806bf1.js",
+    "index.html": "/ast-sort-simulation/index.html",
+    "main.085a32f9.css.map": "/ast-sort-simulation/static/css/main.085a32f9.css.map",
+    "main.52806bf1.js.map": "/ast-sort-simulation/static/js/main.52806bf1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.085a32f9.css",
+    "static/js/main.52806bf1.js"
+  ]
+}
