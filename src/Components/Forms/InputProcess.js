@@ -73,10 +73,6 @@ export default class InputProcess extends Component {
         if(this.state.arr[i]>mxVal) mxVal=this.state.arr[i];
       }
 
-      <p key={idx} style={{display:'inline-block', color:'green'}}>
-                      <b>{value}&nbsp;&nbsp;</b>
-                    </p>
-
       let mxID=0;
       for(let i=0;i<tempEdges.length;i++){
         if(tempEdges[i].id>=mxID) mxID=tempEdges[i].id+1;
@@ -349,7 +345,7 @@ export default class InputProcess extends Component {
     if(this.state.arr.length<20){
       this.setState(
         {
-          arr: [...this.state.arr,this.state.val],
+          arr: [50],
           val: 1,
           valIdx: -1
         }
