@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 import BuildGraph from './BuildGraph';
+import { max } from 'd3';
 
 export default class InputProcess extends Component {
   constructor(props){
     super(props);
     this.state={
       arr: [],
+      maxVal: 0,
       CreateInputManuallyButtonFlag: 1,
       CreateGenerateRandomlyButtonFlag: 1,
       AddValueFlag: 0,
@@ -69,9 +71,7 @@ export default class InputProcess extends Component {
         else tempNodes.push({id: tempNode.id, title: tempNode.title, label: tempNode.label, shape: tempNode.shape, color: {border: 'green'}, font: {color: 'green'}, nodeData: tempNode.nodeData});
       }
 
-      for(let i=0;i<this.state.arr.length;i++){
-        if(this.state.arr[i]>mxVal) mxVal=this.state.arr[i];
-      }
+      mxVal=this.state.maxVal;
 
       let mxID=0;
       for(let i=0;i<tempEdges.length;i++){
@@ -221,8 +221,8 @@ export default class InputProcess extends Component {
       var tempEdges=[];
       var tempNodes=[];
       let tempMsg=[];
-      tempArr.sort();
-
+      tempArr.sort((a, b) => a - b);
+      
       let msg=(<div style={{color: 'green'}}><b>Run DFS and get the sorted array</b></div>)
       tempMsg.push(msg);
       msg=(<div style={{color: 'green'}}>Visit each child node propagating <br></br><b>value = 10 * currentValue + childIndex</b></div>)
@@ -274,6 +274,7 @@ export default class InputProcess extends Component {
       this.setState(
         {
           arr: Array.from({length: this.state.val}, () => Math.floor(Math.random() * 100000)),
+          maxVal: Math.max(...this.state.arr),
           CreateInputManuallyButtonFlag: 0,
           CreateGenerateRandomlyButtonFlag: 0,
           AddValueFlag: 0,
@@ -287,6 +288,7 @@ export default class InputProcess extends Component {
     if(this.state.arr.length>=1){
       this.setState(
         {
+          maxVal: Math.max(...this.state.arr),
           CreateInputManuallyButtonFlag: 0,
           CreateGenerateRandomlyButtonFlag: 0,
           AddValueFlag: 0,
@@ -345,7 +347,7 @@ export default class InputProcess extends Component {
     if(this.state.arr.length<20){
       this.setState(
         {
-          arr: [50],
+          arr: [...this.state.arr,parseInt(this.state.val, 10)],
           val: 1,
           valIdx: -1
         }
